@@ -47,7 +47,7 @@ tokenizer.pad_token = tokenizer.eos_token
 model = GPT2LMHeadModel.from_pretrained('gpt2')
 
 # Create a dataset from the texts
-texts = [item[0] for item in dataset]
+texts = [item[0] for item in initial_dataset]
 dataset = Dataset.from_dict({"text": texts})
 
 def tokenize_function(examples):
@@ -108,7 +108,7 @@ def generate_examples(prompt, num_examples=5):
     )
     return [tokenizer.decode(g, skip_special_tokens=True) for g in generated_ids]
 
-new_examples = generate_examples("Could you please deploy my updated backend? I made some changes to it.", 10)
+new_examples = generate_examples("Alright, may I send them an email?.", 10)
 print("Generated Examples:")
 for example in new_examples:
     print(example)
@@ -117,3 +117,65 @@ for example in new_examples:
 # Re-train the model with the expanded dataset
 trainer.train_dataset = initial_dataset
 trainer.train()
+
+
+### Generated examples
+
+"""
+Generated Examples:
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some of the things about it: 1.1. The backend has been updated
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some things about the backend. Second, my modified backend has changed a lot.
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some things about the backend. Second, my modified backend has been updated. Third
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some of the things about it: 1.1. The backend has been changed
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some of the things about it: 1.1. The backend has been upgraded
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some of the things about it: 1.1.0.2.3
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some things about the backend. Second, my modified backend has changed a lot about
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some things about the backend. Second, my modified backend has been updated. Thanks
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some things about the backend. Second, my modified backend has changed a lot in
+Could you please deploy my updated backend? I made some changes to it. It's been modified by me. I modified it in a few ways. First, I changed some things about the backend. Second, my modified backend has been updated. You
+
+Generated Examples:
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's updated my backend. Second, I made some changes to it
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's updated my backend. Second, I added some changes to it
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's updated my backend. Second, I added some new features.
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's changed the way it works. Second, I made some changes
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's updated my backend. Second, I made some changes to my
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's updated my backend. Second, I added some new features to
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's updated my backend. Second, I made some changes to the
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's changed the way it works. Second, I added some changes
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's updated my backend. Second, I made some changes to its
+Please, could you implement my modified frontend? I changed a few things about it. It's been modified by me. I modified it in a couple of ways. First, it's updated my backend. Second, I added some changes to my
+
+Generated Examples:
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+I changed some of the things about it
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+I changed some things about the backend.
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+I changed some of the things about the
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+I changed some things about my backend.
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are:
+
+I changed some of the way it works.
+
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+I changed some things about the way it
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+* I changed some of the code.
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+* I changed some of the code to
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+* I changed some of the code in
+Alright, may I send them an email?. It's been modified by me. I modified it in a few ways. First, I made some changes to it. The changes are as follows:
+
+* I changed some of the functionality.
+"""
